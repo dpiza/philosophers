@@ -4,7 +4,7 @@
 
 ## Description
 
-This project is a multi-thread philosopher's life simulation.
+This project is a multi-thread simulation of the dining philosopher's problem.
 
 ## Goals
 
