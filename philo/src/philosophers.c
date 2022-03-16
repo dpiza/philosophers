@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:31:31 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 18:23:06 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:55:43 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	monitor(t_philo **philo, t_env *env)
 		if (get_time(philo[0][i % env->n_philos].last_meal) > env->time_to_die)
 		{
 			philo[0][i % env->n_philos].env->stop = 1;
-			usleep(1000);
+			usleep(2000);
 			print(env->start_time, philo[0][i % env->n_philos].id, DIE);
 			return ;
 		}
@@ -87,6 +87,7 @@ int	main(int argc, char **argv)
 	create_philos(&philo, &env);
 	monitor(&philo, &env);
 	join_threads(&philo, &env);
+	destroy_mutex(&env);
 	free(philo);
 	free(env.fork);
 	return (0);

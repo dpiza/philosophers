@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:32:25 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 18:44:56 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:51:46 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ void		*lifecicle(void *arg);
 * @param env A pointer to the t_env struct
 */
 void		init_mutex(t_env *env);
+
+/**
+* Destroy all the foks mutexes
+* @param env A pointer to the t_env struct
+*/
+void		destroy_mutex(t_env *env);
 
 /**
 * Join all the philosopers threads
