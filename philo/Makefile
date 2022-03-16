@@ -6,7 +6,7 @@
 #    By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 11:25:52 by dpiza             #+#    #+#              #
-#    Updated: 2022/03/16 18:18:02 by dpiza            ###   ########.fr        #
+#    Updated: 2022/03/16 18:19:48 by dpiza            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ IFLAGS			= -I$(INCLUDES_DIR)
 
 RM 				= rm -f
 NORM			= norminette
-
 
 INCLUDES_FILES 	= philosophers.h
 
