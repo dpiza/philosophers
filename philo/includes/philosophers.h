@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:32:25 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 18:23:31 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:44:56 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,27 +73,61 @@ typedef struct s_philosopher
 /*
 ** lifecicle.c
 */
-void		philo_think(t_philo *philo, int time);
-void		philo_sleep(t_philo *philo);
-int			philo_eat(t_philo *philo);
+/**
+* The start routine to the lifecicle of each philosopher
+* @param arg A pointer to the philosopher struct
+*/
 void		*lifecicle(void *arg);
 
 /*
 ** threads.c
 */
+/**
+* Initiate all the foks mutexes
+* @param env A pointer to the t_env struct
+*/
 void		init_mutex(t_env *env);
+
+/**
+* Join all the philosopers threads
+* @param philo The matrix containing all the philosopers structs
+* @param env A pointer to the t_env struct
+*/
 void		join_threads(t_philo **philo, t_env *env);
 
 /*
 ** utils.c
 */
+/**
+* Constructs an integer from a string
+* @param nptr Is the string representing the number
+* @return The converted int; 0 when the string does not contains a valid integer
+*/
 int			ft_atoi(const char *nptr);
+
+/**
+* Returns the time, in milliseconds, or the difference between the local time
+* and the start time
+* @param start The time, in milliseconds, to be compared to the local time
+* @return If start time is provided, returns the time difference.
+* Otherwise returns the time in milliseconds
+*/
 long int	get_time(long int start);
 
 /*
 ** print.c
 */
+/**
+* Prints a message to the terminal
+* @param start_time The time, in milliseconds, of the program start
+* @param id The identification number of the philosoper
+* @param action A number identifying the action message
+*/
 void		print(long int start_time, int id, int action);
+
+/**
+* Prints a usage message to the terminal and exit the program
+*/
 void		print_exit(void);
 
 #endif
