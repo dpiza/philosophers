@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:50:13 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 18:22:46 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:23:39 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 void	print(long int start_time, int id, int action)
 {
-	static char	*message[6] = {
+	static char	*message[5] = {
 		"has taken a fork",
 		"is eating",
 		"is sleeping",
 		"is thinking",
-		"died",
-		"all philosophers exploded"
+		"died"
 	};
 
 	printf("%5.3ld %5d %s\n", get_time(start_time), id + 1, message[action]);

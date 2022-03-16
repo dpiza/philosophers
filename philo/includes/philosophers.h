@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:32:25 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 18:22:06 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:23:31 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define SLEEP	2
 # define THINK	3
 # define DIE	4
-# define FULL	5
 
 /**
 * Stores the arguments provided with the program call
