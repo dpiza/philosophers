@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_lifecicle.c                                  :+:      :+:    :+:   */
+/*   lifecicle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:53 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 17:16:38 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:42:19 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	philo_think(t_philo *philo, int time)
+static void	philo_think(t_philo *philo, int time)
 {
 	if (philo->env->stop)
 		return ;
@@ -21,7 +21,7 @@ void	philo_think(t_philo *philo, int time)
 		usleep(time);
 }
 
-void	philo_sleep(t_philo *philo)
+static void	philo_sleep(t_philo *philo)
 {
 	if (philo->env->stop)
 		return ;
@@ -29,7 +29,7 @@ void	philo_sleep(t_philo *philo)
 	usleep(philo->env->time_to_sleep * 1000);
 }
 
-int	philo_eat(t_philo *philo)
+static int	philo_eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->env->fork[philo->id]);
 	print(philo->env->start_time, philo->id, FORK);
