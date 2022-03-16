@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:50:13 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 17:38:42 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:22:46 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@ void	print(long int start_time, int id, int action)
 	};
 
 	printf("%5.3ld %5d %s\n", get_time(start_time), id + 1, message[action]);
-}
-
-void	_print_struct(t_env *env, int argc)
-{
-	printf("-----t_env-----\n");
-	printf("n_philo:\t%d\n", env->n_philos);
-	printf("time_to_die:\t%d\n", env->time_to_die);
-	printf("time_to_eat:\t%d\n", env->time_to_eat);
-	printf("time_to_sleep:\t%d\n", env->time_to_sleep);
-	if (argc == 6)
-		printf("each_must_eat:\t%d\n", env->n_must_eat);
-	printf("-----t_env-----\n\n");
 }
 
 void	print_exit(void)

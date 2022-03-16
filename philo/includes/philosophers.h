@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:32:25 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 17:51:58 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:22:06 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,5 @@ long int	get_time(long int start);
 */
 void		print(long int start_time, int id, int action);
 void		print_exit(void);
-void		_print_struct(t_env *env, int argc);
 
 #endif

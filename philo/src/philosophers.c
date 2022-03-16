@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:31:31 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 17:17:06 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:23:06 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	init_struct(t_env *env, int argc, char **argv)
 	if (!env->n_philos || !env->time_to_die || !env->time_to_eat
 		|| !env->time_to_sleep)
 		print_exit();
-	_print_struct(env, argc);
 	env->stop = 0;
 }
 
