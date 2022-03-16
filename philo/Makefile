@@ -6,7 +6,7 @@
 #    By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 11:25:52 by dpiza             #+#    #+#              #
-#    Updated: 2022/03/15 22:46:14 by dpiza            ###   ########.fr        #
+#    Updated: 2022/03/16 18:18:02 by dpiza            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,10 @@ INCLUDES 		= $(addprefix $(INCLUDES_DIR)/, $(INCLUDES_FILES))
 # **************************************************************************** #
 
 SRCS = 				philosophers.c \
-					philo_lifecicle.c \
+					lifecicle.c \
+					threads.c \
 					print.c \
-					philo_utils.c
+					utils.c
 
 OBJS 			= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
@@ -79,20 +80,3 @@ norm:
 				@$(NORM) $(SRCS_DIR)/*.c $(INCLUDES_DIR)/*.h
 
 .PHONY:			norm
-
-# **************************************************************************** #
-#                                 VALGRIND                                     #
-# **************************************************************************** #
-
-ARGS =			9 8 7 6 5
-
-run:			$(NAME)
-				./$(NAME) $(ARGS)
-
-leaks:			$(NAME)
-				valgrind -s --leak-check=full --show-reachable=yes \
-				--show-leak-kinds=all --trace-children=yes --track-fds=yes \
-				--suppressions=suppression/readline.supp \
-				./philosophers $(ARGS)
-
-.PHONY:			leaks run

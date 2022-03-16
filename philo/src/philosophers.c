@@ -6,19 +6,11 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:31:31 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/15 22:56:30 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/16 17:17:06 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-static void	check_args(int argc)
-{
-	if (argc < 5)
-		print_exit(USAGE);
-	else if (argc > 6)
-		print_exit(ARGS);
-}
 
 static void	init_struct(t_env *env, int argc, char **argv)
 {
@@ -28,10 +20,12 @@ static void	init_struct(t_env *env, int argc, char **argv)
 	env->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		env->n_must_eat = ft_atoi(argv[5]);
+	else
+		env->n_must_eat = 0;
 	env->start_time = get_time(0);
 	if (!env->n_philos || !env->time_to_die || !env->time_to_eat
-		|| !env->time_to_sleep || !env->n_must_eat)
-		print_exit(ARGS);
+		|| !env->time_to_sleep)
+		print_exit();
 	_print_struct(env, argc);
 	env->stop = 0;
 }
@@ -40,26 +34,42 @@ static void	create_philos(t_philo **philo, t_env *env)
 {
 	int	i;
 
-	i = -1;
-	while (++i < env->n_philos)
+	i = 0;
+	while (i < env->n_philos)
 	{
 		philo[0][i].env = env;
 		philo[0][i].id = i;
 		philo[0][i].n_meals = 0;
 		philo[0][i].last_meal = env->start_time;
-		pthread_create(&philo[0][i].thread, NULL, &philo_thread, &philo[0][i]);
+		pthread_create(&philo[0][i].thread, NULL, &lifecicle, &philo[0][i]);
+		i++;
 	}
 }
 
-static void	join_threads(t_philo **philo, t_env *env)
+static void	monitor(t_philo **philo, t_env *env)
 {
-	int	i;
+	int			i;
+	int			max_meals;
 
 	i = 0;
-	while (i < env->n_philos)
+	max_meals = 0;
+	while (1)
 	{
-		pthread_join(philo[0][i].thread, NULL);
-		// printf("Thread %i joined\n", i);
+		if (get_time(philo[0][i % env->n_philos].last_meal) > env->time_to_die)
+		{
+			philo[0][i % env->n_philos].env->stop = 1;
+			usleep(1000);
+			print(env->start_time, philo[0][i % env->n_philos].id, DIE);
+			return ;
+		}
+		if (philo[0][i % env->n_philos].n_meals == env->n_must_eat &&
+			env->n_must_eat > 0)
+			max_meals++;
+		if (max_meals == env->n_philos)
+		{
+			philo[0][i % env->n_philos].env->stop = 1;
+			return ;
+		}
 		i++;
 	}
 }
@@ -69,12 +79,14 @@ int	main(int argc, char **argv)
 	t_env		env;
 	t_philo		*philo;
 
-	check_args(argc);
+	if (argc < 5 || argc > 6)
+		print_exit();
 	init_struct(&env, argc, argv);
 	philo = malloc(env.n_philos * sizeof(t_philo));
 	env.fork = malloc(env.n_philos * sizeof(pthread_mutex_t));
+	init_mutex(&env);
 	create_philos(&philo, &env);
-	philo_daemon(&philo, &env);
+	monitor(&philo, &env);
 	join_threads(&philo, &env);
 	free(philo);
 	free(env.fork);
