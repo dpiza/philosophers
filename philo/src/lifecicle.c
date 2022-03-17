@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:53 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/17 16:48:18 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/17 18:04:47 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void	*lifecicle(void *arg)
 	t_philo	*philo;
 
 	philo = arg;
+	if (philo->id % 2)
+		philo_think(philo, philo->env->time_to_eat);
 	while (!philo->env->stop)
 	{
-		if (philo->id % 2)
-			philo_think(philo, philo->env->time_to_eat);
 		if (philo_eat(philo) || philo->env->stop)
 			break ;
 		philo_sleep(philo);
