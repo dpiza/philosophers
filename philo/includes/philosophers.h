@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:32:25 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/17 17:02:02 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/17 17:45:31 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,7 @@ long int	get_time(long int start);
 */
 /**
 * Prints a message to the terminal
-* @param start_time The time, in milliseconds, of the program start
-* @param id The identification number of the philosoper
+* @param philo A pointer to the philo struct
 * @param action A number identifying the action message
 */
 void		print(t_philo *philo, int action);
