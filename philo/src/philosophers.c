@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:31:31 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/17 16:09:19 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/17 17:07:56 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static void	monitor(t_philo **philo, t_env *env)
 		if (get_time(philo[0][i].last_meal) > env->time_to_die)
 		{
 			env->stop = 1;
-			usleep(2000);
-			print(env->start_time, philo[0][i].id, DIE);
+			usleep(500);
+			print(&philo[0][i], DIE);
 		}
 		if (philo[0][i].n_meals == env->n_must_eat &&
 			env->n_must_eat > 0)

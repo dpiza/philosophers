@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:53 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 18:42:19 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/17 16:48:18 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	philo_think(t_philo *philo, int time)
 {
 	if (philo->env->stop)
 		return ;
-	print(philo->env->start_time, philo->id, THINK);
+	print(philo, THINK);
 	if (time)
 		usleep(time);
 }
@@ -25,14 +25,14 @@ static void	philo_sleep(t_philo *philo)
 {
 	if (philo->env->stop)
 		return ;
-	print(philo->env->start_time, philo->id, SLEEP);
+	print(philo, SLEEP);
 	usleep(philo->env->time_to_sleep * 1000);
 }
 
 static int	philo_eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->env->fork[philo->id]);
-	print(philo->env->start_time, philo->id, FORK);
+	print(philo, FORK);
 	if (philo->env->stop)
 	{
 		pthread_mutex_unlock(&philo->env->fork[philo->id]);
@@ -44,8 +44,8 @@ static int	philo_eat(t_philo *philo)
 		pthread_mutex_lock(&philo->env->fork[0]);
 	else
 		pthread_mutex_lock(&philo->env->fork[philo->id + 1]);
-	print(philo->env->start_time, philo->id, FORK);
-	print(philo->env->start_time, philo->id, EAT);
+	print(philo, FORK);
+	print(philo, EAT);
 	philo->last_meal = get_time(0);
 	usleep(philo->env->time_to_eat * 1000);
 	philo->n_meals++;

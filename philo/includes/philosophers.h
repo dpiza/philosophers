@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:32:25 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 18:51:46 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/17 17:02:02 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ long int	get_time(long int start);
 * @param id The identification number of the philosoper
 * @param action A number identifying the action message
 */
-void		print(long int start_time, int id, int action);
+void		print(t_philo *philo, int action);
 
 /**
 * Prints a usage message to the terminal and exit the program
