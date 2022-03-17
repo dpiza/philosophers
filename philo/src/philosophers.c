@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:31:31 by dpiza             #+#    #+#             */
-/*   Updated: 2022/03/16 18:55:43 by dpiza            ###   ########.fr       */
+/*   Updated: 2022/03/17 16:09:19 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	create_philos(t_philo **philo, t_env *env)
 		philo[0][i].env = env;
 		philo[0][i].id = i;
 		philo[0][i].n_meals = 0;
-		philo[0][i].last_meal = env->start_time;
+		philo[0][i].last_meal = get_time(0);
 		pthread_create(&philo[0][i].thread, NULL, &lifecicle, &philo[0][i]);
 		i++;
 	}
@@ -52,23 +52,24 @@ static void	monitor(t_philo **philo, t_env *env)
 
 	i = 0;
 	max_meals = 0;
-	while (1)
+	while (!env->stop)
 	{
-		if (get_time(philo[0][i % env->n_philos].last_meal) > env->time_to_die)
+		if (i == env->n_philos)
 		{
-			philo[0][i % env->n_philos].env->stop = 1;
-			usleep(2000);
-			print(env->start_time, philo[0][i % env->n_philos].id, DIE);
-			return ;
+			usleep(500);
+			i = 0;
 		}
-		if (philo[0][i % env->n_philos].n_meals == env->n_must_eat &&
+		if (get_time(philo[0][i].last_meal) > env->time_to_die)
+		{
+			env->stop = 1;
+			usleep(2000);
+			print(env->start_time, philo[0][i].id, DIE);
+		}
+		if (philo[0][i].n_meals == env->n_must_eat &&
 			env->n_must_eat > 0)
 			max_meals++;
 		if (max_meals == env->n_philos)
-		{
-			philo[0][i % env->n_philos].env->stop = 1;
-			return ;
-		}
+			env->stop = 1;
 		i++;
 	}
 }
