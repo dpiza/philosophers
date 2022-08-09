@@ -24,7 +24,7 @@ Any other philosopher number N sits between philosopher number N - 1 and philoso
 
 |Argument|Description|
 |-|-|
-|anumber_of_philosophers|The number of philosophers and also the number of forks.|
+|number_of_philosophers|The number of philosophers and also the number of forks.|
 |time_to_die (in milliseconds)|If a philosopher didn’t start eating time_to_die milliseconds since the beginning of their last meal or the beginning of the simulation, they die.|
 |time_to_eat (in milliseconds)|The time it takes for a philosopher to eat. During that time, they will need to hold two forks.|
 |time_to_sleep (in milliseconds)| The time a philosopher will spend sleeping.|
@@ -65,9 +65,20 @@ Any other philosopher number N sits between philosopher number N - 1 and philoso
 
 ## Usage
 
-``WORK IN PROGRESS``
+To compile the program, run:
 
-![](https://github.com/dpiza/resources/blob/master/gifs/jimc.gif?raw=true)
+```Shell
+$ cd philo
+$ make
+```
+
+Run the program providing the settings to the simulation by executing:
+
+./philo [n_of_philos] [time_to_die] [time_to_sleep] [time_to_eat] [n_must_eat]
+
+```Shell
+$ ./philo 4 400 100 100 6
+```
 
 ## License
 
